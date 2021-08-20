@@ -53,9 +53,11 @@ function select()
 
 function sub()
 {
-  $db = Db::getPdo();
   $memo = $_POST['memo'];
-  $result = $db->exec('insert into memos set memo="' . $memo . '", created_at=NOW()');
+
+  $stmt = Db::getPdo()->prepare('insert into memos set memo=?, created_at=NOW()');
+  $stmt->bindParam(1, $memo);
+  $result = $stmt->execute();
 
   $word = $result ? "成功" : "失敗";
   p("「${memo}」の保存に${word}しました");
