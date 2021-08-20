@@ -54,10 +54,18 @@ function select()
 function sub()
 {
   $db = Db::getPdo();
-  // $memo = $_POST['memo'];
-  $memo = "てすと";
+  $memo = $_POST['memo'];
   $result = $db->exec('insert into memos set memo="' . $memo . '", created_at=NOW()');
-  p($result);
+
+  $word = $result ? "成功" : "失敗";
+  p("「${memo}」の保存に${word}しました");
 }
 
 sub();
+
+?>
+
+<form method="post">
+  <textarea name="memo" placeholder="メモです"></textarea>
+  <button type="submit">送信</button>
+</form>
