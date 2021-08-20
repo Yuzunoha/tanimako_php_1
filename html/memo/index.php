@@ -42,3 +42,17 @@ function insert()
   $cnt = $pdo->exec($sql);
   p("$cnt 件のデータを挿入しました。");
 }
+
+function sub()
+{
+  $pdo = Db::getPdo();
+  $sql = 'select * from my_items';
+  $records = $pdo->query($sql);
+
+  p("サブです");
+  while ($record = $records->fetch(PDO::FETCH_ASSOC)) {
+    p($record);
+  }
+}
+
+sub();
