@@ -27,8 +27,18 @@ function p($a = "")
   echo "</pre>";
 }
 
+function insert()
+{
+  $pdo = Db::getPdo();
 
-p("トップページです");
-Db::getPdo();
-Db::getPdo();
-Db::getPdo();
+  $sql = 'insert into my_items set';
+  $sql .= ' maker_id=1,';
+  $sql .= ' item_name="もも",';
+  $sql .= ' price=210,';
+  $sql .= ' keyword="缶詰,ピンク,甘い",';
+  $sql .= ' sales=0,';
+  $sql .= ' created="2018-01-23"';
+
+  $cnt = $pdo->exec($sql);
+  p("$cnt 件のデータを挿入しました。");
+}
