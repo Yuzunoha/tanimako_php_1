@@ -9,8 +9,13 @@ function p($a = "")
 
 p("トップページです");
 
+$dsm = "mysql:dbname=mydb; host=mysql; charset=utf8;";
+$dbUsername = "root";
+$dbPassword = "root";
+
 try {
-  throw new Exception("ユズノハの例外です");
+  $db = new PDO($dsm, $dbUsername, $dbPassword);
+  p($db);
 } catch (Exception $e) {
   p($e);
 }
