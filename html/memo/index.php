@@ -43,12 +43,21 @@ function insert()
   p("$cnt 件のデータを挿入しました。");
 }
 
-function sub()
+function select()
 {
   $db = Db::getPdo();
   $records = $db->query('SELECT * FROM my_items');
   $ret = $records->fetchAll(PDO::FETCH_ASSOC);
   p($ret);
+}
+
+function sub()
+{
+  $db = Db::getPdo();
+  // $memo = $_POST['memo'];
+  $memo = "てすと";
+  $result = $db->exec('insert into memos set memo="' . $memo . '", created_at=NOW()');
+  p($result);
 }
 
 sub();
