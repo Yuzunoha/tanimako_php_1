@@ -45,14 +45,10 @@ function insert()
 
 function sub()
 {
-  $pdo = Db::getPdo();
-  $sql = 'select * from my_items';
-  $records = $pdo->query($sql);
-
-  p("サブです");
-  while ($record = $records->fetch(PDO::FETCH_ASSOC)) {
-    p($record);
-  }
+  $db = Db::getPdo();
+  $records = $db->query('SELECT * FROM my_items');
+  $ret = $records->fetchAll(PDO::FETCH_ASSOC);
+  p($ret);
 }
 
 sub();
